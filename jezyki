@@ -1,0 +1,30 @@
+on script load:
+	set {version} to content of file "plugins\Skript\scripts\grierior\jezyki.sk"
+	set {version.new} to result of connect to "https://code.skript.pl/ru8xQoWN/raw"
+	if {version} is not {version.new}:
+		download "https://code.skript.pl/ru8xQoWN/raw" to "plugins\Skript\scripts\grierior\jezyki.sk"
+command /jezyki:
+	trigger:
+		send "&aZnane jezyki:"
+		if {slowianskijz::%player%} is 1:
+			send "&a- &2Slowianski"
+		if {polskijz::%player%} is 1:
+			send "&a- &2Polski"
+		if {angielskijz::%player%} is 1:
+			send "&a- &2Angielski"
+command /nauczjezyka [<text>] [<player>]:
+	permission: jezyki.admin
+	trigger:
+		if arg 2 is not set:
+			if arg 1 is "Slowianski" or "slowianski":
+				set {slowianskijz::%player%} to 1
+			if arg 1 is "Polski" or "polski" or "pl" or "PL" or "Pl":
+				set {polskijz::%player%} to 1
+			if arg 1 is "Angielski" or "angielski" or "ang" or "ANG" or "Ang":
+				set {angielski::%player%} to 1
+command /zapomnijjz:
+	permission: jezyki.admin
+	trigger:
+		clear {slowianskijz::%player%}
+		clear {polskijz::%player%}
+		clear {angielskijz::%player%}
