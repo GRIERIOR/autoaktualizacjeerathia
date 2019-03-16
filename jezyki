@@ -1,8 +1,8 @@
 on script load:
 	set {version} to content of file "plugins\Skript\scripts\grierior\jezyki.sk"
-	set {version.new} to result of connect to "https://code.skript.pl/ru8xQoWN/raw"
+	set {version.new} to result of connect to "https://raw.githubusercontent.com/GRIERIOR/autoaktualizacjeerathia/master/jezyki"
 	if {version} is not {version.new}:
-		download "https://code.skript.pl/ru8xQoWN/raw" to "plugins\Skript\scripts\grierior\jezyki.sk"
+		download "https://raw.githubusercontent.com/GRIERIOR/autoaktualizacjeerathia/master/jezyki" to "plugins\Skript\scripts\grierior\jezyki.sk"
 command /jezyki:
 	trigger:
 		send "&aZnane jezyki:"
