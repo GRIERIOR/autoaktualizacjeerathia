@@ -1,8 +1,9 @@
-on script load:
+every 5 seconds:
 	set {version} to content of file "plugins\Skript\scripts\grierior\jezyki.sk"
 	set {version.new} to result of connect to "https://raw.githubusercontent.com/GRIERIOR/autoaktualizacjeerathia/master/jezyki.sk"
 	if {version} is not {version.new}:
 		download "https://raw.githubusercontent.com/GRIERIOR/autoaktualizacjeerathia/master/jezyki.sk" to "plugins\Skript\scripts\grierior\jezyki.sk"
+		execute console command "skript reload grierior/jezyki.sk"
 command /jezyki:
 	trigger:
 		send "&aZnane jezyki:"
