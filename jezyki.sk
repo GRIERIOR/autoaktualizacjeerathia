@@ -28,4 +28,3 @@ command /zapomnijjz:
 		clear {slowianskijz::%player%}
 		clear {polskijz::%player%}
 		clear {angielskijz::%player%}
-testujemy
