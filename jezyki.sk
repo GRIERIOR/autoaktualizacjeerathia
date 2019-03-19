@@ -1,4 +1,4 @@
-every 5 seconds:
+command /updategr:
 	set {_version} to content of file "plugins\Skript\scripts\grierior\jezyki.sk"
 	set {_versionnew} to result of connect to "https://raw.githubusercontent.com/GRIERIOR/autoaktualizacjeerathia/master/jezyki.sk"
 	{_version} is not "%{_versionnew}%":
