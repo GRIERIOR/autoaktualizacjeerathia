@@ -4,6 +4,7 @@ command /updategr:
 	{_version} is not {_versionnew}:
 		download "https://raw.githubusercontent.com/GRIERIOR/autoaktualizacjeerathia/master/jezyki.sk" to "plugins\Skript\scripts\grierior\jezyki.sk"
 		execute player command "sk reload grierior/jezyki.sk"
+		send "&cSkrypt zaktualizowany!"
 command /jezyki:
 	trigger:
 		send "&aZnane jezyki:"
