@@ -1,7 +1,7 @@
 every 5 seconds:
 	set {_version} to content of file "plugins\Skript\scripts\grierior\jezyki.sk"
 	set {_versionnew} to result of connect to "https://raw.githubusercontent.com/GRIERIOR/autoaktualizacjeerathia/master/jezyki.sk"
-	{_version} is not {_versionnew}:
+	{_version} is not %{_versionnew}%:
 		download "https://raw.githubusercontent.com/GRIERIOR/autoaktualizacjeerathia/master/jezyki.sk" to "plugins\Skript\scripts\grierior\jezyki.sk"
 		reload script "grierior/jezyki.sk"
 command /jezyki:
