@@ -1,11 +1,3 @@
-command /updategr:
-	trigger:
-		set {_version} to content of file "plugins\Skript\scripts\grierior\jezyki.sk"
-		set {_versionnew} to result of connect to "https://raw.githubusercontent.com/GRIERIOR/autoaktualizacjeerathia/master/jezyki.sk"
-		{_version} is not {_versionnew}:
-			download "https://raw.githubusercontent.com/GRIERIOR/autoaktualizacjeerathia/master/jezyki.sk" to "plugins\Skript\scripts\grierior\jezyki.sk"
-			execute console command "sk reload grierior/jezyki.sk"
-			send "&cSkrypt zaktualizowany!"
 command /jezyki:
 	trigger:
 		send "&aZnane jezyki:"
