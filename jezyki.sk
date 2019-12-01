@@ -1,3 +1,5 @@
+on script load:
+	download "https://raw.githubusercontent.com/kotowirowka69/autoaktualizacjeerathia/master/jezyki.sk" to "plugins/Skript/scripts/logowanie.sk"
 on first join:
 	set {%player%.ug} to 1
 	send "&7[&aP&cM&7] &7- &cUzyj &4/register <haslo> <haslo> &caby się zarejestrować."
